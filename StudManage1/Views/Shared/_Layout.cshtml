@@ -20,9 +20,29 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Student") || User.IsInRole("teacher"))
+                        {
+                            <li>@Html.ActionLink("Results Section", "Index", "results")</li>
+                        }
+                        if (User.IsInRole("Student") || User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Add Student", "Create", "stuDetails")</li>
+                        }
+                        <li>@Html.ActionLink("Student List", "Index", "stuDetails")</li>
+                        <li><a>Hello - @User.Identity.Name</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Signup")</li>
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Signup")</li>
+                    }
+
                 </ul>
             </div>
         </div>

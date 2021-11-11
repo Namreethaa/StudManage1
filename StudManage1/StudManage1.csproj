@@ -55,6 +55,9 @@
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,9 +134,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomePage1Controller.cs" />
     <Compile Include="Controllers\HomePage2Controller.cs" />
+    <Compile Include="Controllers\PlacementController.cs" />
     <Compile Include="Controllers\regController.cs" />
     <Compile Include="Controllers\resultsController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
@@ -188,6 +193,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,12 +264,18 @@
     <Content Include="Views\results\Details.cshtml" />
     <Content Include="Views\results\Edit.cshtml" />
     <Content Include="Views\results\Index.cshtml" />
+    <Content Include="Views\Placement\Companies.cshtml" />
+    <Content Include="Views\Placement\Students.cshtml" />
+    <Content Include="Views\Placement\Studentdeet.cshtml" />
+    <Content Include="Views\Branch\Branches.cshtml" />
+    <Content Include="Views\Branch\Students.cshtml" />
+    <Content Include="Views\Branch\Studentdeet.cshtml" />
+    <Content Include="Views\Signup\Login1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fileupload1\" />
     <Folder Include="fileupload\" />
-    <Folder Include="Views\Placement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

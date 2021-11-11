@@ -9,10 +9,7 @@ namespace StudManage.Models
     public class HomePage1Controller : Controller
     {
         // GET: HomePage1
-        public ActionResult Index()
-        {
-            return View();
-        }
+     
         public ActionResult Menu()
         {
             return View();

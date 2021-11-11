@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using StudManage1.Models;
 
 namespace StudManage1.Controllers
@@ -17,14 +18,60 @@ namespace StudManage1.Controllers
         private StudentManagement1Entities db = new StudentManagement1Entities();
 
         // GET: stuDetails
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var stuDetails = db.stuDetails.Include(s => s.branch).Include(s => s.company);
-            return View(stuDetails.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var ModelList = db.stuDetails.Include(e => e.branch);
+
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+
+            var model = from s in db.stuDetails
+                        select s;
+            //Added this area to, Search and match data, if search string is not null or empty
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(s => s.name.Contains(searchString)
+                                       || s.gender.Contains(searchString));
+
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    ModelList = model.OrderByDescending(s => s.name);
+                    break;
+
+                default:
+                    ModelList = model.OrderBy(s => s.name);
+                    break;
+            }
+
+            int pageSize = 4;
+            //set page to one is there is no value, ??  is called the null-coalescing operator.
+            int pageNumber = (page ?? 1);
+            //return the Model data with paged
+
+            return View(ModelList.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: stuDetails/Details/5
-        public ActionResult Details(int? id)
+
+
+
+
+// GET: stuDetails/Details/5
+public ActionResult Details(int? id)
         {
             if (id == null)
             {

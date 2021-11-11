@@ -1,0 +1,133 @@
+﻿@model StudManage1.Models.eduDetail
+
+@{
+    ViewBag.Title = "Studentdeet";
+}
+
+<h2>Studentdeet</h2>
+
+<div>
+    <h4>eduDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.rollNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.rollNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.DOB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.age)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.city)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stuDetail.phoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuDetail.phoneNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_yop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_yop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_inst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_inst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.twel_percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.twel_percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.twel_yop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.twel_yop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.twel_inst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.twel_inst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curr_CGPA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curr_CGPA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curr_sem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curr_sem)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.sid }) 
+    @Html.ActionLink("Back to MENU", "menu2","HomePage2")
+</p>

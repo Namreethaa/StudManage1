@@ -16,7 +16,7 @@ namespace StudManage1.Controllers
         private StudentManagement1Entities db = new StudentManagement1Entities();
 
         // GET: results
-        [Authorize(Roles = "Teacher,Student")]
+      
         public ActionResult Index()
         {
             var results = db.results.Include(r => r.stuDetail);
@@ -24,7 +24,7 @@ namespace StudManage1.Controllers
         }
 
         // GET: results/Details/5
-        [Authorize(Roles = "Teacher,Student")]
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +40,7 @@ namespace StudManage1.Controllers
         }
 
         // GET: results/Create
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "teacher")]
         public ActionResult Create()
         {
             ViewBag.id = new SelectList(db.stuDetails, "sid", "rollNo");
@@ -52,7 +52,7 @@ namespace StudManage1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "teacher")]
         public ActionResult Create([Bind(Include = "sid,id,m1,m2,m3,total,grade")] result result)
         {
             if (ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace StudManage1.Controllers
             ViewBag.id = new SelectList(db.stuDetails, "sid", "rollNo", result.id);
             return View(result);
         }
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "teacher")]
         // GET: results/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,7 +86,7 @@ namespace StudManage1.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "sid,id,m1,m2,m3,total,grade")] result result)
         {
@@ -99,7 +99,7 @@ namespace StudManage1.Controllers
             ViewBag.id = new SelectList(db.stuDetails, "sid", "rollNo", result.id);
             return View(result);
         }
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "teacher")]
         // GET: results/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -114,7 +114,7 @@ namespace StudManage1.Controllers
             }
             return View(result);
         }
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "teacher")]
         // POST: results/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

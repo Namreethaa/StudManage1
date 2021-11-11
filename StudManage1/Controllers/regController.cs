@@ -39,7 +39,7 @@ namespace StudManage1.Controllers
 
                 db.eduDetails.Add(student);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("menu2","Homepage2");
             }
             return View(student);
 

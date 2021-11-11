@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace StudManage.Controllers
 {
+    
     public class SignupController : Controller
     {
         // GET: Signup
@@ -58,8 +59,7 @@ namespace StudManage.Controllers
                 if (IsValidUser)
                 {
                     FormsAuthentication.SetAuthCookie(model.username, false);
-                    return RedirectToAction("" +
-                        "Login", "Signup");
+                    return RedirectToAction("menu2", "HomePage2");
                 }
                 ModelState.AddModelError("", "invalid Username or Password");
                 return View();
@@ -91,5 +91,27 @@ namespace StudManage.Controllers
                 return View();
             }
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+        public ActionResult Login1(signup model)
+        {
+            using (StudentManagement1Entities context = new StudentManagement1Entities())
+            {
+                bool IsValidUser = context.signups.Any(user => user.username.ToLower() ==
+                     model.username.ToLower() && user.pword == model.pword);
+                if (IsValidUser)
+                {
+                    FormsAuthentication.SetAuthCookie(model.username, false);
+                    return RedirectToAction("" +
+                        "Index", "results");
+                }
+                ModelState.AddModelError("", "invalid Username or Password");
+                return View();
+            }
+        }
+
     }
 }

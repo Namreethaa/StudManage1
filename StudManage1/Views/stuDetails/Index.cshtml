@@ -1,4 +1,5 @@
-﻿@model IEnumerable<StudManage1.Models.stuDetail>
+﻿@model PagedList.IPagedList<StudManage1.Models.stuDetail>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -6,82 +7,82 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.rollNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phoneNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DOB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.city)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.branch.b_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.company.cname)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.rollNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phoneNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DOB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.city)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.branch.b_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.company.cname)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.sid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.sid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.sid })
-        </td>
-    </tr>
+@{
+    ViewBag.Title = "Home Page";
 }
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<!--Table with bootstrap class .table and .table-condensed-->
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink("name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+            
+            <th>rollno</th>
+            <th>DOB</th>
+            <th>age</th>
+            <th>address</th>
+            <th>city</th>
+            <th>gender</th>
+            <th>Branch</th>
+            <th>cname</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--Loop through each customer to show it's data-->
+        @foreach (var Customer in Model)
+        {
+        <tr>
+            <td>@Customer.name</td>
+            <td>@Customer.rollNo</td>
+            <td>@Customer.DOB</td>
+            <td>@Customer.age</td>
+            <td>@Customer.address</td>
+            <td>@Customer.city</td>
+            <td>@Customer.gender</td>
+            <td>@Customer.branch.b_name</td>
+            @*<td>@Customer.company.cname</td>*@
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    Html.ActionLink("Details", "Details", new { id = Customer.sid });
+                    if (User.IsInRole("Admin") || User.IsInRole("PO"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = Customer.sid });
+                    }
 
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = Customer.sid });
+                    }
+                }
+
+            </td>
+
+        </tr>
+        }
+
+    </tbody>
 </table>
+
+
+
+<br />
+<!--Code to show curent page and page number-->
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+
+
+
+
+
