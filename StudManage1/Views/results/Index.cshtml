@@ -1,0 +1,63 @@
+﻿@model IEnumerable<StudManage1.Models.result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.m1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.m2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.m3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stuDetail.rollNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.m1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.m2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.m3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stuDetail.rollNo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.sid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.sid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.sid })
+        </td>
+    </tr>
+}
+
+</table>

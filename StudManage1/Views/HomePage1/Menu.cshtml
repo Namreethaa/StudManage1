@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+}
+
+<style>
+    div.w3-col {
+        display: flex;
+        padding: 25px;
+        text-align: center;
+    }
+
+    img {
+        width: 180px;
+        height: 200px
+    }
+
+    a.option {
+        border: 1px hidden gray;
+        /*border-style: groove;*/
+        margin: 20px;
+        transition: transform .2s;
+        /*background-color: lightgrey;*/
+    }
+
+    a:hover {
+        transform: scale(1.3);
+    }
+</style>
+
+<h2>Menu</h2>
+
+@*GRID(hover) (About,notices,photos,placements,)
+    -contact us page*@
+
+<div class="w3-col l3 s6">
+    <a class="option" href="~/HomePage1/AboutUs">
+        <div class="w3-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/15/15659.png">
+            <p><b>About  Us</b></p>
+        </div>
+    </a>
+    <a class="option">
+        <div class="w3-container">
+            <img src="https://thumbs.dreamstime.com/b/news-icon-vector-sign-symbol-isolated-white-background-news-logo-concept-news-icon-vector-isolated-white-background-133757525.jpg">
+            <p><b>Notices</b></p>
+        </div>
+    </a>
+    <a class="option">
+        <div class="w3-container">
+            <img src="https://www.freeiconspng.com/uploads/photography-icon-png-0.png">
+            <p><b>Gallery</b></p>
+        </div>
+    </a>
+    <a class="option">
+        <div class="w3-container">
+            <img src="https://miro.medium.com/max/960/0*H5b3TYySaiSIO3Xn.png">
+            <p><b>PLACEMENT</b></p>
+        </div>
+    </a>
+</div>
+
+
+
+
